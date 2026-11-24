@@ -19,7 +19,10 @@ npm run dev      # http://localhost:3000  aur  http://localhost:3000/admin
 3. **Build → Authentication → Email/Password** enable → **Users → Add user** (apna email/password) → **User UID** copy karein.
 4. **Realtime Database → Rules** mein `database.rules.json` paste karein, `PASTE_YOUR_ADMIN_UID` ki jagah apna UID → **Publish**.
    (Sab log score dekh sakte hain, update sirf aap.)
-5. **Project settings → Your apps → Web (`</>`)** → app register → config values note karein.
+5. **Firestore Database → Rules** mein `firestore.rules` paste karein, `PASTE_YOUR_ADMIN_UID` ki jagah wahi UID daalein → **Publish**. Match history public read hogi; sirf admin write kar sakega.
+6. **Project settings → Your apps → Web (`</>`)** → app register → config values note karein.
+
+`/matches` par saved matches ki list dikhegi. Kisi match ko select karke full scorecard khol sakte hain.
 
 ### 2. Env variables
 `.env.local.example` ko copy karke `.env.local` banayein aur values bharein:

@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { normalize, oversText, rate } from "@/lib/scoring";
 import { demoState } from "@/lib/demo";
 import { isDemo, listenLive, listenResults } from "@/lib/store";
@@ -74,12 +75,15 @@ export default function LivePage() {
       {results.length > 0 && (
         <section className="sec res">
           <h2>Recent results</h2>
-          <ul>{results.map((r, i) => <li key={i}><b>{r.result}</b><span>{r.title} · {r.summary}</span></li>)}</ul>
+          <ul>{results.map((r, i) => <li key={i}>
+            {r.matchId ? <Link className="archive-link" href={`/matches/${r.matchId}`}><b>{r.result}</b><span>{r.title} · {r.summary}</span></Link> : <><b>{r.result}</b><span>{r.title} · {r.summary}</span></>}
+          </li>)}</ul>
         </section>
       )}
 
       <footer>
         <span>{live?.updated ? "Updated " + new Date(live.updated).toLocaleTimeString([], { hour: "numeric", minute: "2-digit", second: "2-digit" }) : " "}</span>
+        <Link className="archive-nav" href="/matches">Match history</Link>
         <button className="share" type="button" onClick={share}>{copied ? "Copied!" : "Link copy karein"}</button>
       </footer>
     </main>

@@ -70,12 +70,19 @@ function Dashboard() {
 
   async function commit(next) {
     const cur = liveRef.current;
-    if (busy.current || next === cur) return;
+    if (busy.current || next === cur) return false;
     busy.current = true;
     undo.current.push(JSON.stringify(cur ?? null)); saveUndo();
-    try { await store.setLive(next); }
-    catch (e) { alert("Save nahi hua: " + e.message); undo.current.pop(); saveUndo(); }
-    busy.current = false;
+    try {
+      const saved = await store.setLive(next);
+      liveRef.current = saved;
+      setLive(saved);
+      return true;
+    } catch (e) {
+      alert("Save nahi hua: " + e.message);
+      undo.current.pop(); saveUndo();
+      return false;
+    } finally { busy.current = false; }
   }
   async function doUndo() {
     if (!undo.current.length || busy.current) return;
@@ -98,7 +105,7 @@ function Dashboard() {
         ))}
       </nav>
       {tab === "score" && <Scoring live={live} commit={commit} undo={doUndo} undoCount={undoCount} goSetup={() => setTab("setup")} />}
-      {tab === "setup" && <Setup teams={teamList} live={live} onStart={(s) => { commit(s); setTab("score"); }} />}
+      {tab === "setup" && <Setup teams={teamList} live={live} onStart={async (s) => { if (await commit(s)) setTab("score"); }} />}
       {tab === "teams" && <Teams teams={teamList} />}
     </>
   );
@@ -264,7 +271,7 @@ function Done({ s, commit, undo, goSetup }) {
   async function save() {
     const summary = s.inns.map((i) => `${s[i.bat].name} ${i.runs}/${i.wkts}`).join(" · ");
     try {
-      await store.pushResult({ title: s.title, result: s.result || "", summary, date: Date.now() });
+      await store.pushResult({ matchId: s.matchId, title: s.title, result: s.result || "", summary, date: Date.now() });
       await commit(null); goSetup();
     } catch (e) { alert("Save nahi hua: " + e.message); }
   }
