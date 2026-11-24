@@ -1,0 +1,6 @@
+{
+  "rules": {
+    ".read": true,
+    ".write": "auth != null && auth.uid === 'PASTE_YOUR_ADMIN_UID'"
+  }
+}
