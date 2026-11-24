@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import LeagueBrand from "@/app/components/league-brand";
 import { normalize, oversText, rate } from "@/lib/scoring";
 import { demoState } from "@/lib/demo";
 import { isDemo, listenLive, listenResults } from "@/lib/store";
@@ -49,7 +50,8 @@ export default function LivePage() {
     <main className="pub">
       <header>
         <Ball />
-        <h1>Shewa Super League<small>Live cricket score</small></h1>
+          <h1>Shewa Super League<small>Live cricket score</small></h1>
+        <LeagueBrand subtitle="Live cricket score" />
         {isLive && <span className="pill"><i />LIVE</span>}
       </header>
       {isDemo && <div className="demo">Demo data — Firebase env variables abhi set nahi hue.</div>}

@@ -2,6 +2,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import * as S from "@/lib/scoring";
 import * as store from "@/lib/store";
+import LeagueBrand from "@/app/components/league-brand";
 
 const UNDO_KEY = "ssl-undo";
 const toArr = (a) => (Array.isArray(a) ? a : Object.values(a || {}));
@@ -13,7 +14,7 @@ export default function AdminPage() {
   return (
     <main className="adm">
       <div className="top">
-        <b>SSL Admin</b>
+        <LeagueBrand subtitle="Admin" compact />
         {user && !store.isDemo && <button className="ghost" type="button" onClick={store.logout}>Logout</button>}
       </div>
       {store.isDemo && <div className="demo">Demo mode — Firebase set nahi, data sirf is browser mein save ho raha hai.</div>}

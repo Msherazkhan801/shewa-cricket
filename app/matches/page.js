@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import LeagueBrand from "@/app/components/league-brand";
 import { deleteMatch, listenMatches, onAuth } from "@/lib/store";
 import { oversText } from "@/lib/scoring";
 
@@ -31,7 +32,7 @@ export default function MatchesPage() {
 
   return (
     <main className="pub">
-      <header><h1>Shewa Super League<small>Match history</small></h1></header>
+      <header><LeagueBrand subtitle="Match history" /></header>
       <Link className="archive-back" href="/">← Live scoreboard</Link>
       <section className="sec">
         <h2>Matches</h2>

@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
+import LeagueBrand from "@/app/components/league-brand";
 import * as S from "@/lib/scoring";
 import { listenMatch } from "@/lib/store";
 
@@ -19,7 +20,7 @@ export default function MatchDetailPage() {
 
   return (
     <main className="pub">
-      <header><h1>Shewa Super League<small>Match scorecard</small></h1></header>
+      <header><LeagueBrand subtitle="Match scorecard" /></header>
       <Link className="archive-back" href="/matches">← Match history</Link>
       {match === undefined ? <section className="board"><p>Loading match...</p></section> : error ? <section className="board"><p>{error}</p></section> : !match ? <section className="board"><p>Match nahi mila.</p></section> : (
         <>
