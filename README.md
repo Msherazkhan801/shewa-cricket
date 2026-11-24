@@ -24,8 +24,7 @@ npm run dev      # http://localhost:3000  aur  http://localhost:3000/admin
 ### 2. Env variables
 `.env.local.example` ko copy karke `.env.local` banayein aur values bharein:
 
-| Variable | Firebase config mein |
-|---|---|
+| Variable | Firebase config mein test|---|---|
 | `NEXT_PUBLIC_FIREBASE_API_KEY` | `apiKey` |
 | `NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN` | `authDomain` |
 | `NEXT_PUBLIC_FIREBASE_DATABASE_URL` | `databaseURL` (Realtime Database page ke upar wala URL) |
