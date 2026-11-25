@@ -5,6 +5,7 @@ import LeagueBrand from "@/app/components/league-brand";
 import { normalize, oversText, rate } from "@/lib/scoring";
 import { demoState } from "@/lib/demo";
 import { isDemo, listenLive, listenResults } from "@/lib/store";
+import Footer from "./components/Footer";
 
 const chipClass = (t) => (t === "W" ? "w" : t === "4" ? "b4" : t === "6" ? "b6" : /wd|nb|b$/.test(t) ? "x" : "");
 const plural = (n, w) => `${n} ${w}${n === 1 ? "" : "s"}`;
@@ -47,6 +48,7 @@ export default function LivePage() {
   const isLive = live?.status === "live";
 
   return (
+    <>
     <main className="pub">
       <header>
         <Ball />
@@ -89,6 +91,8 @@ export default function LivePage() {
         <button className="share" type="button" onClick={share}>{copied ? "Copied!" : "Link copy karein"}</button>
       </footer>
     </main>
+      <Footer/>
+      </>
   );
 }
 

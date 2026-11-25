@@ -1,3 +1,4 @@
+import Footer from "./components/Footer";
 import "./globals.css";
 
 const site = process.env.NEXT_PUBLIC_SITE_URL
@@ -26,7 +27,10 @@ export default function RootLayout({ children }) {
         {/* eslint-disable-next-line @next/next/no-page-custom-font */}
         <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600&family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet" />
       </head>
-      <body>{children}</body>
+      <body>{children}
+
+      {/* <Footer/> */}
+      </body>
     </html>
   );
 }

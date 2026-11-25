@@ -4,6 +4,7 @@ import Link from "next/link";
 import LeagueBrand from "@/app/components/league-brand";
 import { deleteMatch, listenMatches, onAuth } from "@/lib/store";
 import { oversText } from "@/lib/scoring";
+import Footer from "../components/Footer";
 
 export default function MatchesPage() {
   const [matches, setMatches] = useState(null);
@@ -31,6 +32,7 @@ export default function MatchesPage() {
   }
 
   return (
+    <>
     <main className="pub">
       <header><LeagueBrand subtitle="Match history" /></header>
       <Link className="archive-back" href="/">← Live scoreboard</Link>
@@ -56,6 +58,8 @@ export default function MatchesPage() {
           </ul>
         )}
       </section>
+    <Footer/>
     </main>
+    </>
   );
 }
